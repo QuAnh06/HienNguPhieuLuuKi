@@ -14,6 +14,11 @@ public class Flash : MonoBehaviour
     private void Awake()
     {
         spriteRenderer = GetComponent<SpriteRenderer>();
+        if (spriteRenderer == null)
+        {
+            spriteRenderer = GetComponentInChildren<SpriteRenderer>();
+        }
+
         if (spriteRenderer != null)
         {
             defaultMat = spriteRenderer.material;

@@ -4,12 +4,31 @@ Một tựa game nhập vai hành động góc nhìn từ trên xuống (**2D To
 
 ---
 
+# 🗡️ Hiển Ngu Phiêu Lưu Kí
+
+> *"IQ có thể thấp, nhưng độ ngáo phải chạm nóc vũ trụ."*
+
+---
+
 ## 📖 Giới thiệu trò chơi (About the Game)
 
-**Hiển Ngu Phiêu Lưu Kí** đưa người chơi hóa thân thành **Hiển** — một anh chàng "ngáo ngơ" nhưng mang trong mình lòng dũng cảm và sự liều lĩnh hiếm có, vô tình bị cuốn vào cuộc phiêu lưu sinh tồn giữa vùng đất đang bị lũ quái vật biến dị xâm chiếm.
+**Hiển Ngu Phiêu Lưu Kí** đưa người chơi nhập vai vào **Hiển** — một *"kỳ tài"* trong làng thiếu muối với chỉ số IQ luôn nằm ở mức báo động đỏ, nhưng độ ngáo thì chạm nóc vũ trụ. 
 
-### Cốt truyện & Bối cảnh
-Từ một kẻ tay trắng chẳng có gì ngoài đôi chân chạy trốn, Hiển phải từng bước làm quen với thanh kiếm trên tay, học cách quan sát chuyển động của kẻ thù và tận dụng những pha lướt né đòn hiểm hóc để sống sót. Hành trình đưa người chơi băng qua những khu rừng rậm rạp ánh nắng đan xen bóng tối, đối đầu với bầy **Blue Slime** hung hãn luôn rình rập truy đuổi bất cứ kẻ nào xâm phạm lãnh thổ.
+* **Không** siêu năng lực.
+* **Không** hệ thống gian lận.
+* Thứ duy nhất Hiển sở hữu là khuôn mặt đậm chất **"ngáo ngơ"** đến mức quái vật nhìn cũng phải ngỡ ngàng bật ngửa vì tưởng đồng loại. 
+
+Vô tình bị ném vào vùng đất đầy rẫy sinh vật biến dị, hành trình của Hiển thực chất là một chuỗi tai nạn nghề nghiệp nối tiếp nhau, nơi cậu ta phải gồng mình gánh còng lưng... sự ngốc nghếch của chính bản thân để không bị tiễn đi *"đăng xuất"* sớm.
+
+---
+
+## 🌲 Cốt truyện & Bối cảnh (Story & Setting)
+
+Khởi đầu với cái đầu rỗng tuếch cùng đôi chân chạy trốn nhanh hơn cả tốc độ ánh sáng, Hiển buộc phải học cách sử dụng thanh kiếm trên tay — dù với tư duy của cậu ta, việc phân biệt **cán kiếm** với **lưỡi kiếm** đã là một thành tựu khoa học vĩ đại. 
+
+Người chơi sẽ phải *thay Hiển động não*, quan sát sơ hở của kẻ thù và thực hiện những pha lướt né *"chân nam đá chân chiêu"* nhưng đầy tính nghệ thuật để giữ lại cái mạng quèn. 
+
+Băng qua những *khu rừng âm u nơi ánh nắng còn hiếm hoi hơn cả nếp nhăn trên não Hiển*, bạn sẽ chạm trán bầy **Blue Slime** — những cục thạch màu xanh trông thì vô tri giống hệt nhân vật chính, nhưng lại dư sức *"vả"* cho Hiển tỉnh ngộ mỗi khi cậu ta nổi máu anh hùng rơm.
 
 ### Lối chơi (Gameplay)
 - **Hành động thời gian thực (Real-time Action):** Không có lượt đánh chờ đợi — mọi pha vung kiếm, né đòn và phản công đều diễn ra liên tục, đòi hỏi sự nhạy bén và căn thời điểm chuẩn xác.

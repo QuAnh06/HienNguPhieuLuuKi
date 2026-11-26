@@ -3,8 +3,25 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 
 [RequireComponent(typeof(Rigidbody2D))]
-public sealed class PlayerCombat : MonoBehaviour
+public sealed class PlayerCombat : MonoBehaviour, IWeapon
 {
+    // ── IWeapon ───────────────────────────────────────────────────────────────
+    [Header("Sword Weapon Info")]
+    [SerializeField] private WeaponInfo swordWeaponInfo;
+
+    public void Attack() => TryAttack();
+    public WeaponInfo GetWeaponInfo() => swordWeaponInfo;
+
+    /// <summary>Called by ActiveWeapon to show/hide the sword when switching weapons.</summary>
+    public void SetSwordActive(bool active)
+    {
+        swordActive = active;
+        if (swordVisual)   swordVisual.gameObject.SetActive(active);
+        if (slashRenderer) slashRenderer.enabled = false;
+        if (!active && isAttacking) isAttacking = false; // cancel any ongoing swing display
+    }
+    // ─────────────────────────────────────────────────────────────────────────
+
     [Header("Sword Configuration")]
     [SerializeField] private float attackCooldown = 0.35f;
     [SerializeField] private float hitDelay = 0.10f;
@@ -39,6 +56,7 @@ public sealed class PlayerCombat : MonoBehaviour
     private bool isDashing, isAttacking;
     private float facingSign = 1f;
     private bool isSwordUp = true;
+    private bool swordActive = true;  // controlled by ActiveWeapon / ActiveInventory
 
     private void Awake()
     {
@@ -62,14 +80,11 @@ public sealed class PlayerCombat : MonoBehaviour
     private void Update()
     {
         UpdateFacing();
-        if (!isAttacking) UpdateSwordRestPose();
+        if (!isAttacking && swordActive) UpdateSwordRestPose();
 
-        if ((Mouse.current != null && Mouse.current.leftButton.wasPressedThisFrame) || (Keyboard.current != null && Keyboard.current.jKey.wasPressedThisFrame))
-        {
-            TryAttack();
-        }
-
-        if ((Keyboard.current != null && Keyboard.current.spaceKey.wasPressedThisFrame) || (Mouse.current != null && Mouse.current.rightButton.wasPressedThisFrame))
+        // Dash input stays in PlayerCombat; attack input is routed via ActiveWeapon.
+        if ((Keyboard.current != null && Keyboard.current.spaceKey.wasPressedThisFrame) ||
+            (Mouse.current    != null && Mouse.current.rightButton.wasPressedThisFrame))
         {
             TryDash();
         }
