@@ -215,84 +215,8 @@ MonoBehaviour:
   m_SourceFontFilePath: 
   m_AtlasPopulationMode: 1
   InternalDynamicOS: 0
-  m_GlyphTable:
-  - m_Index: 1691
-    m_Metrics:
-      m_Width: 45
-      m_Height: 75
-      m_HorizontalBearingX: 3
-      m_HorizontalBearingY: 74
-      m_HorizontalAdvance: 48
-    m_GlyphRect:
-      m_X: 10
-      m_Y: 10
-      m_Width: 45
-      m_Height: 75
-    m_Scale: 1
-    m_AtlasIndex: 0
-    m_ClassDefinitionType: 0
-  - m_Index: 211
-    m_Metrics:
-      m_Width: 45
-      m_Height: 63
-      m_HorizontalBearingX: 3
-      m_HorizontalBearingY: 62
-      m_HorizontalAdvance: 48
-    m_GlyphRect:
-      m_X: 10
-      m_Y: 104
-      m_Width: 45
-      m_Height: 63
-    m_Scale: 1
-    m_AtlasIndex: 0
-    m_ClassDefinitionType: 0
-  - m_Index: 1719
-    m_Metrics:
-      m_Width: 42
-      m_Height: 59
-      m_HorizontalBearingX: 3
-      m_HorizontalBearingY: 46
-      m_HorizontalAdvance: 48
-    m_GlyphRect:
-      m_X: 10
-      m_Y: 186
-      m_Width: 42
-      m_Height: 59
-    m_Scale: 1
-    m_AtlasIndex: 0
-    m_ClassDefinitionType: 0
-  - m_Index: 1679
-    m_Metrics:
-      m_Width: 45
-      m_Height: 67
-      m_HorizontalBearingX: 3
-      m_HorizontalBearingY: 66
-      m_HorizontalAdvance: 48
-    m_GlyphRect:
-      m_X: 10
-      m_Y: 264
-      m_Width: 45
-      m_Height: 67
-    m_Scale: 1
-    m_AtlasIndex: 0
-    m_ClassDefinitionType: 0
-  m_CharacterTable:
-  - m_ElementType: 1
-    m_Unicode: 7857
-    m_GlyphIndex: 1691
-    m_Scale: 1
-  - m_ElementType: 1
-    m_Unicode: 273
-    m_GlyphIndex: 211
-    m_Scale: 1
-  - m_ElementType: 1
-    m_Unicode: 7885
-    m_GlyphIndex: 1719
-    m_Scale: 1
-  - m_ElementType: 1
-    m_Unicode: 7845
-    m_GlyphIndex: 1679
-    m_Scale: 1
+  m_GlyphTable: []
+  m_CharacterTable: []
   m_AtlasTextures:
   - {fileID: 28268798066460806}
   m_AtlasTextureIndex: 0
@@ -303,36 +227,12 @@ MonoBehaviour:
   m_AtlasHeight: 512
   m_AtlasPadding: 9
   m_AtlasRenderMode: 4169
-  m_UsedGlyphRects:
-  - m_X: 0
-    m_Y: 0
-    m_Width: 64
-    m_Height: 94
-  - m_X: 0
-    m_Y: 94
-    m_Width: 64
-    m_Height: 82
-  - m_X: 0
-    m_Y: 176
-    m_Width: 61
-    m_Height: 78
-  - m_X: 0
-    m_Y: 254
-    m_Width: 64
-    m_Height: 86
+  m_UsedGlyphRects: []
   m_FreeGlyphRects:
-  - m_X: 64
-    m_Y: 0
-    m_Width: 447
-    m_Height: 511
   - m_X: 0
-    m_Y: 340
+    m_Y: 0
     m_Width: 511
-    m_Height: 171
-  - m_X: 61
-    m_Y: 176
-    m_Width: 450
-    m_Height: 78
+    m_Height: 511
   m_FontFeatureTable:
     m_MultipleSubstitutionRecords: []
     m_LigatureSubstitutionRecords: []
