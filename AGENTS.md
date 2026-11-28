@@ -12,7 +12,8 @@ Unity 6 (`6000.6.9f1`) 2D combat prototype. URP 2D, new Input System. Only scene
 - `Assets/Scripts/**` compiles into `Assembly-CSharp` (only `Assets/Welcome` has an asmdef). Editor-only code must live in `Assets/Editor/**` (`Assembly-CSharp-Editor`).
 - Player: `PlayerController` (singleton, input/movement) + `PlayerCombat` (implements `IWeapon`, attack/dash) + `PlayerHealth`, with `MeleeHitbox`, `ActiveWeapon`.
 - Weapons & Combat: `IWeapon.Attack()`, `WeaponInfo` (ScriptableObject), `Bow`, `Staff`, `Projectile` (Arrow), `MagicLaser`, `Indestructible`, `SpriteFade`.
-- UI & Inventory: `ActiveInventory` (3-slot Hotbar, keys 1/2/3), `InventorySlot`.
+- UI & Inventory: `PlayerHUD` (Health Slider 7 HP, Gold counter `000` D3), `EconomyManager` (DontDestroyOnLoad), `ActiveInventory` (3-slot Hotbar, keys 1/2/3), `InventorySlot`.
+- Drops & Pickups: `Pickup` (Gold, Heart, magnetic attraction), `PickupSpawner` (attached to BlueSlime & Ghost).
 - Enemies: `EnemyAI` (Roaming/Chasing/Attacking/Hurt/Dead) + `EnemyPathfinding` + `Slime : IEnemy` + `Shooter : IEnemy` + `GhostVisual` + `EnemyHealth`.
 - Shared: `Knockback`, `Flash`. Contracts: `IDamageable.TakeDamage(int amount, Vector2 hitDirection)`, `IEnemy.Attack()`, `IWeapon`.
 - Hit detection finds `IDamageable` via `GetComponentsInParent<MonoBehaviour>()`; enemies are excluded via `GetComponentInParent<EnemyAI>()`. Code resolves the player through `PlayerController.Instance`/`GetComponent`, not tags.
@@ -27,12 +28,14 @@ Unity 6 (`6000.6.9f1`) 2D combat prototype. URP 2D, new Input System. Only scene
 - `Tools/Setup Blue Slime` (`SlimeSetup.cs`) regenerates clips/controller/prefab, deletes existing `Enemies` children, respawns slimes, and adds `Knockback`/`Flash`/`PlayerHealth` to the Player.
 - `Tools/Setup Weapons and Hotbar` (`WeaponInventorySetup.cs`) builds WeaponInfo SOs, animators, prefabs (Bow, Staff, Arrow, MagicLaser), attaches ActiveWeapon and creates Canvas Hotbar 1-2-3.
 - `Tools/Setup Ghost in Scene 2` (`GhostSetup.cs`) builds Ghost & GhostBullet prefabs, places 2 Ghost enemy instances into `Sample Scene 2.unity`.
+- `Tools/Setup Health and Drops System` (`HealthAndEconomySetup.cs`) builds HeartPickup/GoldCoin prefabs, PlayerHUD prefab, syncs Player 7 HP & CapsuleCollider2D, and links PickupSpawner to enemies.
+- `Tools/Setup Visuals and Death System` (`AnimationAndVisualsSetup.cs`) builds Player_Hit animation & Hurt transition, tunes Coin/Heart sizes and adds HeartVisual.
 - `Tools/Capture Scene View` (`CaptureHelper.cs`) writes to a hardcoded absolute path under `C:\Users\Laptop\.gemini\...`; update it before relying on it.
 
 ## Conventions
 - Unity 6 API: `Rigidbody2D.linearVelocity`/`linearDamping` (not `velocity`/`drag`), `FindAnyObjectByType`.
 - Expose inspector tuning via `[SerializeField] private` + `[Header]`; null-guard optional components as existing code does.
-- Animator params: Player `moveX`/`moveY`; Slime `isWalking`, `Attack`, `Hurt`, `Death`, `isDead`; Bow `Fire`; Staff `Attack`.
+- Animator params: Player `moveX`/`moveY`, `Hurt`; Slime `isWalking`, `Attack`, `Hurt`, `Death`, `isDead`; Bow `Fire`; Staff `Attack`.
 - `.agents/agents/{csharp-coder,unity-artist}.md` hold Vietnamese subagent prompts; keep them in sync if roles change.
 
 ## Maintenance & Multi-Agent Rules
@@ -40,5 +43,4 @@ Unity 6 (`6000.6.9f1`) 2D combat prototype. URP 2D, new Input System. Only scene
 - Multi-agent file ownership: When running multiple agents in parallel, assign distinct scripts/folders per agent; never let two agents edit the same `.unity` scene or `.prefab` file simultaneously.
 
 ## Current Progress
-- Multi-weapon system (Sword, Bow, Staff) & Hotbar 1-2-3 completed.
-- Ghost enemy created with oscillating cyan bullet barrage (`Shooter.cs`), floating visual (`GhostVisual.cs`), and 2 instances placed in `Sample Scene 2.unity`. Next: Scene 2 map environment / Player integration or Health (Hearts) & Stamina UI.
+- Health bar UI (7 HP, Heart icon, Slider), Gold Counter (`000`), Player damage & Hurt animation, Death sequence (disappears + scene reload), gentle pickup magnet, spinning Gold Coin (scale 0.7) & pulsating Heart (scale 0.85, HeartVisual) completed and verified in Play Mode with 0 errors.

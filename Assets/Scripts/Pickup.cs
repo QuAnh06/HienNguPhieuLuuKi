@@ -1,47 +1,114 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class Pickup : MonoBehaviour
 {
-    [SerializeField] private float pickUpDistance = 5f;
-    [SerializeField] private float accelartionRate = .2f;
-    [SerializeField] private float moveSpeed = 3f;
+    public enum PickupType { Gold, Heart }
+
+    [SerializeField] private PickupType pickupType = PickupType.Gold;
+    [SerializeField] private int amount = 1;
+    [SerializeField] private float pickUpDistance = 2.5f;
+    [SerializeField] private float accelartionRate = 1.2f;
+    [SerializeField] private float moveSpeed = 2f;
+    [SerializeField] private float maxSpeed = 4.5f;
+    [SerializeField] private float popDuration = 0.5f;
+    [SerializeField] private float heightY = 1.0f;
+    [SerializeField] private float magnetDelay = 0.5f;
+    [SerializeField] private float lifetime = 20f;
+    [SerializeField] private AnimationCurve animCurve;
 
     private Vector3 moveDir;
     private Rigidbody2D rb;
+    private float currentSpeed;
+    private float spawnTimer = 0f;
 
     private void Awake()
     {
         rb = GetComponent<Rigidbody2D>();
     }
 
+    private void Start()
+    {
+        currentSpeed = moveSpeed;
+        StartCoroutine(AnimCurveSpawnRoutine());
+        Destroy(gameObject, lifetime);
+    }
+
+    public void SetAmount(int value) => amount = Mathf.Max(1, value);
+
     private void Update()
     {
-        Vector3 playerPos = PlayerController.Instance.transform.position;
+        spawnTimer += Time.deltaTime;
+        if (spawnTimer < magnetDelay) return; // Don't pull during pop arc
 
-        if (Vector3.Distance(transform.position, playerPos) < pickUpDistance)
+        if (PlayerController.Instance == null) return;
+
+        Vector3 playerPos = PlayerController.Instance.transform.position;
+        float dist = Vector3.Distance(transform.position, playerPos);
+
+        if (dist < pickUpDistance)
         {
             moveDir = (playerPos - transform.position).normalized;
-            moveSpeed = accelartionRate;
+            currentSpeed = Mathf.Min(currentSpeed + accelartionRate * Time.deltaTime, maxSpeed);
         }
         else
         {
             moveDir = Vector3.zero;
-            moveSpeed = 0;
+            currentSpeed = moveSpeed;
         }
     }
 
     private void FixedUpdate()
     {
-        rb.linearVelocity = moveDir * moveSpeed * Time.deltaTime;
+        if (rb != null)
+        {
+            rb.linearVelocity = (Vector2)moveDir * currentSpeed;
+        }
     }
 
-    private void OnTriggerStay2D(Collider2D other)
+    private void OnTriggerEnter2D(Collider2D other)
     {
-        if (other.gameObject.GetComponent<PlayerController>())
+        if (spawnTimer < 0.2f) return;
+
+        if (other.GetComponentInParent<PlayerController>())
         {
+            if (pickupType == PickupType.Gold && EconomyManager.Instance != null)
+            {
+                EconomyManager.Instance.AddGold(amount);
+            }
+            else if (pickupType == PickupType.Heart && PlayerHealth.Instance != null)
+            {
+                PlayerHealth.Instance.HealPlayer(amount);
+            }
+
             Destroy(gameObject);
+        }
+    }
+
+    private IEnumerator AnimCurveSpawnRoutine()
+    {
+        Vector2 startPoint = transform.position;
+        Vector2 endPoint = startPoint + new Vector2(Random.Range(-1.2f, 1.2f), Random.Range(-0.8f, 0.8f));
+
+        if (animCurve == null || animCurve.length == 0)
+        {
+            animCurve = new AnimationCurve(
+                new Keyframe(0f, 0f, 2f, 2f),
+                new Keyframe(0.5f, 1f, 0f, 0f),
+                new Keyframe(1f, 0f, -2f, -2f)
+            );
+        }
+
+        float timePassed = 0f;
+        while (timePassed < popDuration)
+        {
+            timePassed += Time.deltaTime;
+            float linearT = timePassed / popDuration;
+            float heightT = animCurve.Evaluate(linearT);
+            float height = Mathf.Lerp(0f, heightY, heightT);
+
+            transform.position = Vector2.Lerp(startPoint, endPoint, linearT) + new Vector2(0f, height);
+            yield return null;
         }
     }
 }

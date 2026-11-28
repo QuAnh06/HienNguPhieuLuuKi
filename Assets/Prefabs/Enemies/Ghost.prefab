@@ -17,6 +17,7 @@ GameObject:
   - component: {fileID: 1907228881335590392}
   - component: {fileID: 6005476807002225961}
   - component: {fileID: 5247086545689936342}
+  - component: {fileID: 3724018669549912153}
   m_Layer: 0
   m_Name: Ghost
   m_TagString: Untagged
@@ -161,9 +162,9 @@ MonoBehaviour:
   bulletMoveSpeed: 4.5
   burstCount: 2
   projectilesPerBurst: 8
-  angleSpread: 70
+  angleSpread: 90
   startingDistance: 0.25
-  timeBetweenBursts: 0.8
+  timeBetweenBursts: 1.8
   restTime: 1.5
   stagger: 1
   oscillate: 1
@@ -179,7 +180,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a280e5f9887572b429aa743d11290c65, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::EnemyAI
-  detectionRange: 6
+  detectionRange: 5
   attackRange: 4.5
   attackCooldown: 2.5
   roamChangeInterval: 2.5
@@ -197,6 +198,20 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::EnemyHealth
   maxHealth: 4
   knockbackThrust: 10
+--- !u!114 &3724018669549912153
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4041703824043209579}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 54690342b1803d34581813ac2bf270ab, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PickupSpawner
+  goldCoinPrefab: {fileID: 1913911327826214574, guid: 53a9ce63ed677034cbac5ab4dfc4baea, type: 3}
+  heartPickupPrefab: {fileID: 6388509741985962302, guid: bb7b507e3b5963148b652681ffedd613, type: 3}
 --- !u!1 &4531174301088164125
 GameObject:
   m_ObjectHideFlags: 0

@@ -19,6 +19,7 @@ GameObject:
   - component: {fileID: 3061951987090411641}
   - component: {fileID: 1122466954388139475}
   - component: {fileID: 2568759467748482485}
+  - component: {fileID: 541305319796816797}
   m_Layer: 0
   m_Name: BlueSlime
   m_TagString: Untagged
@@ -274,3 +275,17 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::EnemyHealth
   maxHealth: 3
   knockbackThrust: 10
+--- !u!114 &541305319796816797
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7258065185774939315}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 54690342b1803d34581813ac2bf270ab, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PickupSpawner
+  goldCoinPrefab: {fileID: 1913911327826214574, guid: 53a9ce63ed677034cbac5ab4dfc4baea, type: 3}
+  heartPickupPrefab: {fileID: 6388509741985962302, guid: bb7b507e3b5963148b652681ffedd613, type: 3}

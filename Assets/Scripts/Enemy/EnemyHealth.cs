@@ -50,6 +50,8 @@ public class EnemyHealth : MonoBehaviour, IDamageable
         if (rb != null) rb.linearVelocity = Vector2.zero;
         if (ai != null) ai.OnDeath();
 
+        GetComponent<PickupSpawner>()?.DropItems();
+
         // Destroy gameobject after death animation completes
         Destroy(gameObject, 1.3f);
     }
